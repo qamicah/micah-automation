@@ -1,5 +1,6 @@
 package st1;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +38,7 @@ public class test_result {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         // 컬리 접속
-        driver.get("https://www.stg.kurly.com/member/login");
+        driver.get("https://www.kurly.com/member/login");
 
     }
 
@@ -62,12 +63,14 @@ public class test_result {
         // 마이컬리 클릭
         WebElement mykurly = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div[2]/div[1]/div[1]/div[1]/a/span[1]")));
         mykurly.click();
+    }
+
+    @After
+    public void After() throws InterruptedException {
 
         // 결과확인
-        WebElement textElement = driver.findElement(By.cssSelector("#__next > div.css-2b29tl.eug5r8l2 > div.css-1jgbowa.epggjnz4 > div > div.css-1nmq3i1.epggjnz2 > div.css-zjik7.ebhkjs714 > div.css-38n0u7.ebhkjs711 > strong"));
-        String actualText = textElement.getText();
-        String expectedText = "장미가"; // 비교하려는 예상 텍스트
-
+        Thread.sleep(2000);
+        Assert.assertEquals("장미가님", driver.findElement(By.xpath("//*[@id=\"__next\"]/div[2]/div[1]/div/div[1]/div[1]/div/strong")).getText());
         System.out.println("test_result 참 잘했어요");
 
 
