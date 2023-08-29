@@ -75,7 +75,7 @@ public class Order_test {
         Thread.sleep(3000);
 
 
-        //driver.quit();
+        driver.quit();
     }
 }
 
